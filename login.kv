@@ -1,0 +1,225 @@
+#:import hex kivy.utils.get_color_from_hex
+
+<Manager>:
+
+    LoginScreen:
+        name: "login_screen"
+
+    RegisterScreen:
+        name: "register_screen"
+
+<LoginScreen>:
+
+    GridLayout:
+        cols: 2
+
+        canvas:
+            Color:
+                rgba: hex("#14181b")
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        GridLayout:
+
+            cols: 2
+            rows: 4
+
+            padding: 15, 30, 28, 15
+            spacing: 10
+
+            Image:
+                source: "user-icon.png"  
+                
+            TextInput:
+                id: username_login
+                hint_text: "username"
+                size_hint_x: 7
+                size_hint_y: 1.5
+                multiline: False
+
+            Image:
+                source: "lock-icon.png"  
+            
+            TextInput:
+                id: password_login
+                password: True
+                hint_text: "password"
+                size_hint_x: 1
+                size_hint_y: 1.5
+                multiline: False
+                
+            EmptyCell:
+            
+            Button:
+                text: "Sign in"
+                font_size: 16
+                bold: True
+                color: hex("#14181b")
+                background_normal: ""
+                background_color: hex("#abd841")
+                size_hint_x: .4
+                size_hint_y: 1.5
+                on_release: root.login()
+
+            EmptyCell:
+
+            Button:
+                text: "Create new account"
+                color: hex("#abd841")    
+                background_normal: ""
+                background_color: 0, 0, 0, 0
+                size_hint_x: .4
+                size_hint_y: .2
+                on_release: root.manager.current = "register_screen"       
+      
+        BoxLayout:
+
+            canvas:
+                Color:
+                    rgba: hex("#1e2126")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            
+            Image:
+                source: "coffe-icon.png"
+
+    GridLayout:
+        id: alert
+        
+        cols: 3
+        size_hint: .45, .2
+        pos: 275, -20
+        padding: 20, 0, 0, 0
+        opacity: 0
+         
+        canvas:
+            Color:
+                rgba: hex("#282828")
+
+            Rectangle: 
+                size: self.size
+                pos: self.pos
+           
+        Image:
+            source: "exclamation-circle.png"   
+            size_hint: .13, .13
+
+        Label:
+            id: alert_text
+            text: ""
+        
+        Button:
+            text: "Dismiss"
+            color: hex("#305540")
+            background_color: 0, 0, 0, 0
+            on_release: root.close_alert()
+            
+<RegisterScreen>:
+
+    GridLayout:
+        cols: 2
+
+        canvas:
+            Color:
+                rgba: hex("#14181b")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+              
+        GridLayout:
+            cols: 2
+            rows: 5
+        
+            padding: 15, 30, 28, 15
+            spacing: 10
+
+            Image:
+                source: "envelope-icon.png"   
+                
+            TextInput:
+                id: email
+                hint_text: "example@email.com"
+                size_hint_x: 7
+                size_hint_y: 1.5
+                multiline: False
+            
+            Image:
+                source: "user-icon.png"   
+
+            TextInput:
+                id: username
+                hint_text: "username"
+                size_hint_x: 7
+                size_hint_y: 1.5
+                multiline: False
+            
+            Image:
+                source: "lock-icon.png"   
+
+            TextInput:
+                id: password
+                password: True
+                hint_text: "password"
+                size_hint_x: 7
+                size_hint_y: 1.5
+                multiline: False
+
+            EmptyCell:
+
+            Button:
+                text: "Create account"
+                bold: True
+                color: hex("#14181b")
+                background_normal: ""
+                background_color: hex("#abd841")
+                size_hint_x: .4
+                size_hint_y: 1.5
+                on_release: root.data_base()
+            
+        BoxLayout:
+
+            canvas:
+                Color:
+                    rgba: hex("#1e2126")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            Image:
+                source: "coffe-icon.png"
+        
+    GridLayout:
+        id: alert
+        
+        cols: 3
+        size_hint: .45, .2
+        pos: 275, -20
+        padding: 20, 0, 0, 0
+        opacity: 0
+
+        canvas:
+            Color:
+                rgba: hex("#282828")
+
+            Rectangle: 
+                pos: self.pos
+                size: self.size
+        
+        Image:
+            source: "exclamation-circle.png"   
+            size_hint: .13, .13
+
+        Label:
+            id: alert_text
+            text: ""
+        
+        Button:
+            text: "Dismiss"
+            color: hex("#305540")
+            background_color: 0, 0, 0, 0
+            on_release: root.close_alert()
+
+<EmptyCell@Widget>:
